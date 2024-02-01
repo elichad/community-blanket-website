@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from contributors.models import Person, get_anonymous_user
 
@@ -15,3 +16,6 @@ class Square(models.Model):
     notes = models.TextField(blank=True)
 
     # TODO: fields relating to location in a larger blanket
+
+    def get_absolute_url(self):
+        return reverse("square-detail", kwargs={"pk": self.pk})
