@@ -14,7 +14,7 @@ def test(request):
 class CreateSquare(CreateView):
     model = Square
     form_class = SquareForm
-    template_name = "squares/square_form.html"
+    template_name = "square_form.html"
 
 
 class UpdateSquare(UpdateView):

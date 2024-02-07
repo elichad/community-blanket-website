@@ -1,0 +1,20 @@
+{% load static %}
+
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="{% static 'blanket_site/style.css' %}">
+        <title>
+            {% block title %}
+            {% endblock %}
+            - Community Blanket Site
+        </title>
+    </head>
+    <body>
+        <nav>
+            <a href="/">Home</a>
+        </nav>
+        {% block content %}
+        <p>There's no content here. Please let a site admin know that this page isn't working properly.</p>
+        {% endblock %}
+    </body>
+</html>
