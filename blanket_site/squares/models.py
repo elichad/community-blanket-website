@@ -18,4 +18,4 @@ class Square(models.Model):
     # TODO: fields relating to location in a larger blanket
 
     def get_absolute_url(self):
-        return reverse("square-detail", kwargs={"pk": self.pk})
+        return reverse("squares:square-detail", kwargs={"pk": self.pk})

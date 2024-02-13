@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+Square #{{ object.id }}: {{ object.name }} by {{ object.creator.name }}
+{% endblock %}
+
+{% block content %}
+<h1>Square #{{ object.id }}: <em>{{ object.name }}</em> by {{ object.creator.name }}</h1>
+
+<div id="image-container">
+<img src="{{ object.image.url }}" alt="{{ object.description }}">
+</div>
+
+<table>
+    <tr>
+        <th scope="row">ID:</th>
+        <td>#{{ object.id }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Creator:</th>
+        <td>{{ object.creator.name }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Date created:</th>
+        <td>{{ object.date_created }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Date uploaded:</th>
+        <td>{{ object.date_time_uploaded }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Description:</th>
+        <td>{{ object.description }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Notes:</th>
+        <td>{{ object.notes }}</td>
+    </tr>
+</table>
+{% endblock %}

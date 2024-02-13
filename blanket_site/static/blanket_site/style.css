@@ -1,1 +1,11 @@
 /* TODO: custom styling */
+
+div#image-container {
+    width: 30vw;
+    height: 30vw;
+}
+
+div#image-container img {
+    height: 100%;
+    width: 100%;
+}

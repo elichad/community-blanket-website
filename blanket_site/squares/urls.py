@@ -1,10 +1,11 @@
 from django.urls import path
 
-from squares.views import CreateSquare, UpdateSquare, DeleteSquare
+from squares.views import SquareCreate, SquareDetail, SquareUpdate, SquareDelete
 
 app_name = "squares"
 urlpatterns = [
-    path("add/", CreateSquare.as_view(), name="create-square"),
-    path("<int:pk>/", UpdateSquare.as_view(), name="update-square"),
-    path("<int:pk>/delete", DeleteSquare.as_view(), name="delete-square"),
+    path("add/", SquareCreate.as_view(), name="square-create"),
+    path("<int:pk>/", SquareDetail.as_view(), name="square-detail"),
+    path("<int:pk>/edit", SquareUpdate.as_view(), name="square-update"),
+    path("<int:pk>/delete", SquareDelete.as_view(), name="square-delete"),
 ]
