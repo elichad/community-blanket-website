@@ -8,10 +8,10 @@ class Square(models.Model):
     """Model for tracking individual contributions."""
 
     name = models.CharField(max_length=256)
-    image = models.ImageField()
+    image = models.ImageField(upload_to="uploads/%Y/%m/%d/")
     creator = models.ForeignKey(Person, on_delete=models.SET(get_anonymous_user))
     date_created = models.DateField()
-    date_uploaded = models.DateTimeField()
+    date_time_uploaded = models.DateTimeField(db_default=models.functions.Now())
     description = models.TextField()
     notes = models.TextField(blank=True)
 
