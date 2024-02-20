@@ -1,3 +1,4 @@
+from typing import Collection
 from django.db import models
 from django.urls import reverse
 
@@ -11,7 +12,7 @@ class Square(models.Model):
     image = models.ImageField(upload_to="uploads/%Y/%m/%d/")
     creator = models.CharField(max_length=256)
     date_created = models.DateField()
-    date_time_uploaded = models.DateTimeField(db_default=models.functions.Now())
+    date_time_uploaded = models.DateTimeField(auto_now_add=True)
     description = models.TextField()
     notes = models.TextField(blank=True)
 
@@ -19,3 +20,8 @@ class Square(models.Model):
 
     def get_absolute_url(self):
         return reverse("squares:square-detail", kwargs={"pk": self.pk})
+
+    def clean_fields(self, exclude: Collection[str] | None = None) -> None:
+        if not hasattr(self, "creator") and "creator" not in exclude:
+            self.creator = get_anonymous_user()
+        return super().clean_fields(exclude)
