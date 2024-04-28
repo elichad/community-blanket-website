@@ -9,7 +9,7 @@ class Square(models.Model):
 
     name = models.CharField(max_length=256)
     image = models.ImageField(upload_to="uploads/%Y/%m/%d/")
-    creator = models.ForeignKey(Person, on_delete=models.SET(get_anonymous_user))
+    creator = models.CharField(max_length=256)
     date_created = models.DateField()
     date_time_uploaded = models.DateTimeField(db_default=models.functions.Now())
     description = models.TextField()
