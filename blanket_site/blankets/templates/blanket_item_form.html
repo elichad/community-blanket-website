@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}
-Create a Blanket
+Add Item To Blanket
 {% endblock %}
 
 {% block content %}
-<h1>Create a Blanket</h1>
+<h1>Add Item to Blanket</h1>
 <form method="post">
     {% csrf_token %}
     {{ form }}

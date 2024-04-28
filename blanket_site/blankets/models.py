@@ -12,8 +12,8 @@ class Blanket(models.Model):
     name = models.CharField(max_length=256)
     creator = models.CharField(max_length=256)
     description = models.TextField()
-    width = models.IntegerField()
-    height = models.IntegerField()
+    num_cols = models.IntegerField()
+    num_rows = models.IntegerField()
 
     def get_absolute_url(self):
         return reverse("blankets:blanket-detail", kwargs={"pk": self.pk})
@@ -24,5 +24,19 @@ class BlanketItem(models.Model):
 
     blanket = models.ForeignKey(Blanket, on_delete=models.CASCADE)
     square = models.ForeignKey(Square, on_delete=models.PROTECT)
-    location_x = models.IntegerField()
-    location_y = models.IntegerField()
+    column = models.PositiveIntegerField()
+    row = models.PositiveIntegerField()
+
+    def clean_column(self):
+        if self.column >= self.blanket.num_cols:
+            raise ValueError("Column number exceeds number of columns in blanket")
+
+    def clean_row(self):
+        if self.row >= self.blanket.num_rows:
+            raise ValueError("Row number exceeds number of rows in blanket")
+
+    def clean_fields(self, exclude=None):
+        super().clean_fields()
+
+        self.clean_column()
+        self.clean_row()
