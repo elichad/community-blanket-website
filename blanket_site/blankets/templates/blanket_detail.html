@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+Blanket #{{ object.id }}: {{ object.name }} by {{ object.creator }}
+{% endblock %}
+
+{% block content %}
+<h1>Blanket #{{ object.id }}: <em>{{ object.name }}</em> by {{ object.creator }}</h1>
+
+<table>
+    <tr>
+        <th scope="row">ID:</th>
+        <td>#{{ object.id }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Creator:</th>
+        <td>{{ object.creator }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Date created:</th>
+        <td>{{ object.created_at }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Last updated:</th>
+        <td>{{ object.updated_at }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Description:</th>
+        <td>{{ object.description }}</td>
+    </tr>
+</table>
+{% endblock %}
