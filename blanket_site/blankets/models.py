@@ -27,6 +27,16 @@ class BlanketItem(models.Model):
     column = models.PositiveIntegerField()
     row = models.PositiveIntegerField()
 
+    class Meta:
+        constraints = [
+            # Square can only be in one location
+            models.UniqueConstraint("square", name="unique_square"),
+            # Each blanket cell can only contain one square
+            models.UniqueConstraint(
+                "blanket", "column", "row", name="unique_blanket_column_row"
+            ),
+        ]
+
     def clean_column(self):
         if self.column >= self.blanket.num_cols:
             raise ValueError("Column number exceeds number of columns in blanket")
