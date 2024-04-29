@@ -10,13 +10,12 @@ from contributors.models import Person, get_anonymous_user
 
 
 class TestSquare(TestCase):
-    def test_create_square__known_creator(self):
+    def test_create_square(self):
         # Arrange
-        person, _ = Person.objects.get_or_create(name="Jane Fakename")
         data = {
             "name": "Test Square",
             "image": SimpleUploadedFile("test.jpg", b"file data"),
-            "creator": person,
+            "creator": "Jane Fakename",
             "date_created": date.today(),
             "description": "An empty square",
             "notes": "This square is a test.",
@@ -25,21 +24,3 @@ class TestSquare(TestCase):
 
         # Act & Assert
         square.full_clean()
-        self.assertEqual(square.creator, person)
-
-    def test_create_square__anonymous_creator(self):
-        # Arrange
-        data = {
-            "name": "Test Square",
-            "image": SimpleUploadedFile("test.jpg", b"file data"),
-            "date_created": date.today(),
-            "description": "An empty square",
-            "notes": "This square is a test.",
-        }
-
-        # Act
-        square = Square(**data)
-        square.full_clean()
-
-        # Assert
-        self.assertEqual(square.creator, get_anonymous_user())
