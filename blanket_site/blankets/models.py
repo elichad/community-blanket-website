@@ -1,3 +1,5 @@
+import numpy as np
+
 from django.db import models
 from django.urls import reverse
 
@@ -17,6 +19,19 @@ class Blanket(models.Model):
 
     def get_absolute_url(self):
         return reverse("blankets:blanket-detail", kwargs={"pk": self.pk})
+
+    def get_blanket_items(self):
+        # loop over rows and columns and get all items where they exist
+        items = np.empty((self.num_rows, self.num_cols), dtype=Square)
+        for row in range(self.num_rows):
+            for col in range(self.num_cols):
+                try:
+                    item = BlanketItem.objects.get(blanket=self, row=row, column=col)
+                    square = item.square
+                    items[row, col] = square
+                except BlanketItem.DoesNotExist:
+                    continue
+        return items
 
 
 class BlanketItem(models.Model):

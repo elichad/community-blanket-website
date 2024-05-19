@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+Blanket item #{{ object.id }}: {{ object.square }} in {{ object.blanket }}
+{% endblock %}
+
+{% block content %}
+<h1>Blanket item #{{ object.id }}: <em>{{ object.square }}</em> in {{ object.blanket }}</h1>
+
+<table>
+    <tr>
+        <th scope="row">ID:</th>
+        <td>#{{ object.id }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Square:</th>
+        <td>{{ object.square }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Blanket:</th>
+        <td>{{ object.blanket }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Last updated:</th>
+        <td>{{ object.updated_at }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Row:</th>
+        <td>{{ object.row }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Column</th>
+        <td>{{ object.column }}</td>
+    </tr>
+</table>
+{% endblock %}

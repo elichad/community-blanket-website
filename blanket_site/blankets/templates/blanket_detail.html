@@ -28,5 +28,32 @@ Blanket #{{ object.id }}: {{ object.name }} by {{ object.creator }}
         <th scope="row">Description:</th>
         <td>{{ object.description }}</td>
     </tr>
+    <tr>
+        <th scope="row">Rows:</th>
+        <td>{{ object.num_rows }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Columns:</th>
+        <td>{{ object.num_cols }}</td>
+    </tr>
 </table>
+
+<table>
+    {% with items=object.get_blanket_items %}
+    {% for row in items %}
+    <tr>
+        {% for item in row %}
+        <td>
+            {% if item %}
+            <img src="{{ item.image.url }}" alt="{{ item.description }}" width="50px" height="50px">
+            {% else %}
+            None
+            {% endif %}
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    {% endwith %}
+</table>
+
 {% endblock %}
