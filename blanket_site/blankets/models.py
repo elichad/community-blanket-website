@@ -33,6 +33,9 @@ class Blanket(models.Model):
                     continue
         return items
 
+    def __str__(self):
+        return self.name
+
 
 class BlanketItem(models.Model):
     """Model to connect Squares and Blankets."""
@@ -65,3 +68,6 @@ class BlanketItem(models.Model):
 
         self.clean_column()
         self.clean_row()
+
+    def __str__(self):
+        return f"{self.blanket.name} ({self.column}, {self.row})"

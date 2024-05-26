@@ -25,3 +25,6 @@ class Square(models.Model):
         if not hasattr(self, "creator") and "creator" not in exclude:
             self.creator = get_anonymous_user()
         return super().clean_fields(exclude)
+
+    def __str__(self):
+        return f"#{self.id} {self.name} by {self.creator}"
