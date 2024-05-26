@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+Community Blanket Project
+{% endblock %}
+
+{% block content %}
+<h1>Community Blanket Project</h1>
+
+Number of squares in the blanket so far: {{ num_items }}
+
+<a href="{% url 'squares:square-create' %}">Submit a contribution</a> -->
+
+<a href="{% url 'blankets:blanket-detail' 1 %}">View the blanket</a> -->
+
+{% endblock %}

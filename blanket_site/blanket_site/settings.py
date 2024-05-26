@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "dashboard.apps.DashboardConfig",
     "blankets.apps.BlanketsConfig",
     "contributors.apps.ContributorsConfig",
     "squares.apps.SquaresConfig",
