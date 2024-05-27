@@ -9,6 +9,7 @@ pillow = "*"
 numpy = "*"
 django-storages = "*"
 boto3 = "*"
+psycopg2 = "*"
 
 [dev-packages]
 
