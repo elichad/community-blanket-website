@@ -1,20 +1,28 @@
 {% load static %}
 
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="{% static 'blanket_site/style.css' %}">
-        <title>
-            {% block title %}
-            {% endblock %}
-            - Community Blanket Site
-        </title>
-    </head>
-    <body>
-        <nav>
-            <a href="/">Home</a>
-        </nav>
-        {% block content %}
-        <p>There's no content here. Please let a site admin know that this page isn't working properly.</p>
+
+<head>
+    <link rel="stylesheet" href="{% static 'blanket_site/style.css' %}">
+    <title>
+        {% block title %}
         {% endblock %}
-    </body>
+        - Community Blanket Site
+    </title>
+</head>
+
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="{% url 'blankets:blanket-detail' 1 %}">View Blanket</a>
+        <a href="https://elichad.github.io/community-blanket/pages/contribute.html">Contribution Guidelines</a>
+        <a href="{% url 'squares:square-create' %}">Submit Contribution</a>
+        <a href="https://elichad.github.io/community-blanket/pages/patterns.html">Patterns</a>
+        <a href="https://mastodon.me.uk/@emfblanket">@emfblanket@mastodon.me.uk</a>
+    </nav>
+    {% block content %}
+    <p>There's no content here. Please let a site admin know that this page isn't working properly.</p>
+    {% endblock %}
+</body>
+
 </html>
