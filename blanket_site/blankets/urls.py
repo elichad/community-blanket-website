@@ -6,6 +6,7 @@ from blankets.views import (
     BlanketUpdate,
     BlanketDelete,
     BlanketItemCreate,
+    BlanketItemDetail,
     BlanketItemUpdate,
     BlanketItemDelete,
 )
@@ -17,6 +18,7 @@ urlpatterns = [
     path("<int:pk>/edit", BlanketUpdate.as_view(), name="blanket-update"),
     path("<int:pk>/delete", BlanketDelete.as_view(), name="blanket-delete"),
     path("items/add/", BlanketItemCreate.as_view(), name="blanket-item-create"),
+    path("items/<int:pk>/", BlanketItemDetail.as_view(), name="blanket-item-detail"),
     path(
         "items/<int:pk>/edit", BlanketItemUpdate.as_view(), name="blanket-item-update"
     ),

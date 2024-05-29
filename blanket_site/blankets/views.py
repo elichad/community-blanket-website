@@ -36,7 +36,11 @@ class BlanketItemCreate(CreateView):
     model = BlanketItem
     form_class = BlanketItemForm
     template_name = "blanket_item_form.html"
-    success_url = reverse_lazy("blanket-item-create")
+
+
+class BlanketItemDetail(DetailView):
+    model = BlanketItem
+    template_name = "blanket_item_detail.html"
 
 
 class BlanketItemUpdate(UpdateView):

@@ -71,3 +71,6 @@ class BlanketItem(models.Model):
 
     def __str__(self):
         return f"{self.blanket.name} ({self.column}, {self.row})"
+
+    def get_absolute_url(self):
+        return reverse("blankets:blanket-item-detail", kwargs={"pk": self.pk})
