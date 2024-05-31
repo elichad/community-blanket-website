@@ -18,7 +18,7 @@ class Square(models.Model):
         help_text='Your name, or a pseudonym. This will be displayed publicly - if you\'d rather not include any name at all, write "Anon".',
     )
     date_created = models.DateField(
-        help_text="Enter the date when you finished the square, not including adding it to the blanket."
+        help_text="Enter the date when you finished the square, not including adding it to the blanket. Format: YYYY-MM-DD"
     )
     date_time_uploaded = models.DateTimeField(auto_now_add=True)
     description = models.CharField(
