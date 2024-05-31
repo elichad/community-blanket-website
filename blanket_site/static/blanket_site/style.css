@@ -9,3 +9,21 @@ div#image-container img {
     height: 100%;
     width: 100%;
 }
+
+label {
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+input {
+    margin-bottom: 1rem;
+}
+
+.helptext {
+    font-size: small;
+    color: grey;
+}
+
+#submit {
+    margin-top: 1rem;
+}
