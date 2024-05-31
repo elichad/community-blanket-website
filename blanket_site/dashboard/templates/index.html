@@ -7,10 +7,29 @@ Community Blanket Project
 {% block content %}
 <h1>Community Blanket Project</h1>
 
-Number of squares in the blanket so far: {{ num_items }}
+<p>Number of squares in the blanket so far: {{ num_items }}</p>
 
-<a href="{% url 'squares:square-create' %}">Submit a contribution</a>
+<p><a href="{% url 'squares:square-create' %}">Submit a contribution</a></p>
 
-<a href="{% url 'blankets:blanket-detail' 1 %}">View the blanket</a>
+{% if object %}
+<table>
+    {% with items=object.get_blanket_items %}
+    {% for row in items %}
+    <tr>
+        {% for item in row %}
+        <td>
+            {% if item %}
+            <a href="{{ item.get_absolute_url }}"><img src="{{ item.image.url }}" alt="{{ item.description }}"
+                    width="75px" height="75px"></a>
+            {% else %}
+            Empty
+            {% endif %}
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    {% endwith %}
+</table>
+{% endif %}
 
 {% endblock %}

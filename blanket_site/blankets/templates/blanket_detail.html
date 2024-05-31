@@ -45,9 +45,10 @@ Blanket #{{ object.id }}: {{ object.name }} by {{ object.creator }}
         {% for item in row %}
         <td>
             {% if item %}
-            <img src="{{ item.image.url }}" alt="{{ item.description }}" width="50px" height="50px">
+            <a href="{{ item.get_absolute_url }}"><img src="{{ item.image.url }}" alt="{{ item.description }}"
+                    width="75px" height="75px"></a>
             {% else %}
-            None
+            Empty
             {% endif %}
         </td>
         {% endfor %}

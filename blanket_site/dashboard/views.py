@@ -14,9 +14,7 @@ def index(request):
     except Blanket.DoesNotExist:
         num_items = None
 
-    context = {
-        "num_items": num_items,
-    }
+    context = {"num_items": num_items, "object": emf_blanket or None}
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, "index.html", context=context)
