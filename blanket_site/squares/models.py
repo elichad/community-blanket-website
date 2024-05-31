@@ -9,7 +9,10 @@ class Square(models.Model):
     """Model for tracking individual contributions."""
 
     name = models.CharField(max_length=256, help_text="A name for the square.")
-    image = models.ImageField(upload_to="uploads/%Y/%m/%d/")
+    image = models.ImageField(
+        upload_to="uploads/%Y/%m/%d/",
+        help_text="A picture of the square. Ensure the image is square (aspect ratio 1:1), and that the corners of the image are cropped as close as possible to the corners of the square, without cutting off part of the square.",
+    )
     creator = models.CharField(
         max_length=256,
         help_text='Your name, or a pseudonym. This will be displayed publicly - if you\'d rather not include any name at all, write "Anon".',
@@ -20,7 +23,7 @@ class Square(models.Model):
     date_time_uploaded = models.DateTimeField(auto_now_add=True)
     description = models.CharField(
         max_length=1000,
-        verbose_name="alt_text",
+        verbose_name="Alt text",
         help_text='A concise visual description of your square. For example, "red and yellow striped square".',
     )
     notes = models.TextField(
