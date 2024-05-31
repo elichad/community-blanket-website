@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 
 {% block title %}
-Community Blanket Project
+EMF Community Blanket Project
 {% endblock %}
 
 {% block content %}
-<h1>Community Blanket Project</h1>
+<h1>EMF Community Blanket Project</h1>
 
 <p>Number of squares in the blanket so far: {{ num_items }}</p>
 
 <p><a href="{% url 'squares:square-create' %}">Submit a contribution</a></p>
+
+<p><a href="https://elichad.github.io/community-blanket/pages/contribute.html">How to contribute</a></p>
 
 {% if object %}
 <table>
