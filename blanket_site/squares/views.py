@@ -2,9 +2,21 @@ from django.http import HttpResponse
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, FormView, UpdateView
 from django.urls import reverse_lazy
+from django.shortcuts import render
 
 from squares.models import Square
 from squares.forms import SquareForm
+
+
+def all_squares(request):
+    """View function for home page of site."""
+
+    squares = Square.objects.all()
+
+    context = {"all_squares": squares}
+
+    # Render the HTML template index.html with the data in the context variable
+    return render(request, "all_squares.html", context=context)
 
 
 class SquareDetail(DetailView):

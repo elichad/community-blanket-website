@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+All Squares
+{% endblock %}
+
+{% block content %}
+<h1>All Squares</h1>
+
+
+{% if all_squares %}
+<table>
+    <th>ID</th>
+    <th>Image</th>
+    <th>Creator</th>
+    {% for square in all_squares %}
+    <tr>
+        <td><a href="{{ square.get_absolute_url }}">#{{ square.id }}</a></td>
+        <td><img src="{{ square.image.url }}" alt="{{ square.description }}" width="75px" height="75px"></td>
+        <td>{{ square.creator }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+{% endblock %}
