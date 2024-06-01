@@ -1,0 +1,52 @@
+/* TODO: custom styling */
+
+div#image-container {
+    width: 30vw;
+    height: 30vw;
+}
+
+div#image-container img {
+    height: 100%;
+    width: 100%;
+}
+
+label {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: medium;
+}
+
+input {
+    margin-bottom: 1rem;
+}
+
+.helptext {
+    font-size: small;
+    color: grey;
+}
+
+#submit {
+    margin-top: 1rem;
+}
+
+nav {
+    background-color: darkblue;
+}
+
+main {
+    margin-left: 1rem;
+}
+
+input {
+    border-width: 1px;
+}
+
+input[type=text]:not(.browser-default) {
+    border-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border: solid;
+    border-color: grey;
+}
