@@ -1,6 +1,7 @@
 from typing import Collection
 from django.db import models
 from django.urls import reverse
+from PIL import Image
 
 from contributors.models import Person, get_anonymous_user
 
@@ -40,6 +41,14 @@ class Square(models.Model):
         if not hasattr(self, "creator") and "creator" not in exclude:
             self.creator = get_anonymous_user()
         return super().clean_fields(exclude)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        path = self.image.path
+        output_size = (400, 400)
+        imag = Image.open(path)
+        imag.thumbnail(output_size)
+        imag.save(path)
 
     def __str__(self):
         return f"#{self.id} {self.name} by {self.creator}"
