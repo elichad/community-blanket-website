@@ -5,10 +5,13 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     ports:
       - "5432:5432"
+    secrets:
+      - postgres_user
+      - postgres_password
     environment:
       - POSTGRES_DB=community_blanket_db
-      - POSTGRES_USER=Jaybird4139
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER_FILE=/run/secrets/postgres_user
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
   web:
     build: ./blanket_site/
     command: python manage.py runserver 0.0.0.0:8000
@@ -23,7 +26,11 @@ services:
 
 secrets:
    django_variables:
-     file: variables.env
+     file: secret_variables_django.env
+   postgres_password:
+     file: secret_postgres_password.txt
+   postgres_user:
+     file: secret_postgres_user.txt
 
 volumes:
   postgres_data:

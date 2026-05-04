@@ -163,3 +163,4 @@ variables.env
 test-data/
 staticfiles/
 mediafiles/
+secret*
