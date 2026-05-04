@@ -48,7 +48,7 @@ class Square(models.Model):
         output_size = (400, 400)
         imag = Image.open(path)
         imag.thumbnail(output_size)
-        imag.save(path)
+        imag.save(path + ".thumbnail")
 
     def __str__(self):
         return f"#{self.id} {self.name} by {self.creator}"

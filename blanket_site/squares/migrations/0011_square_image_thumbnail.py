@@ -13,7 +13,7 @@ def create_thumbnails(apps, schema_editor):
         output_size = (400, 400)
         imag = Image.open(path)
         imag.thumbnail(output_size)
-        imag.save(path)
+        imag.save(path + ".thumbnail")
 
 
 class Migration(migrations.Migration):
