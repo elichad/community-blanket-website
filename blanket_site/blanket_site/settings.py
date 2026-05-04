@@ -14,8 +14,15 @@ import os
 from pathlib import Path
 
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+RUNNING_IN_CONTAINER = os.environ.get("RUNNING_IN_CONTAINER")
+if RUNNING_IN_CONTAINER:
+    from dotenv import load_dotenv
+    load_dotenv("/run/secrets/django_variables")
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -90,7 +97,7 @@ WSGI_APPLICATION = "blanket_site.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-if IS_HEROKU_APP:
+if IS_HEROKU_APP or RUNNING_IN_CONTAINER:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",

@@ -2,12 +2,12 @@ services:
   db:
     image: postgres:16
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data/
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
+      - POSTGRES_DB=community_blanket_db
+      - POSTGRES_USER=Jaybird4139
       - POSTGRES_PASSWORD=postgres
   web:
     build: ./blanket_site/
@@ -16,9 +16,14 @@ services:
       - ./blanket_site:/code
     ports:
       - "8000:8000"
+    secrets:
+      - django_variables
     environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    depends_on:
-      - db
+      RUNNING_IN_CONTAINER: True
+
+secrets:
+   django_variables:
+     file: variables.env
+
+volumes:
+  postgres_data:
