@@ -4,5 +4,5 @@ numpy
 django-storages
 boto3
 psycopg2-binary
-gunicorn
 python-dotenv
+uwsgi
