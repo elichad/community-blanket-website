@@ -17,6 +17,8 @@ services:
     command: uwsgi --socket :8000 --module blanket_site.wsgi
     volumes:
       - ./blanket_site:/code
+      - /var/www/blanket_site/static:/code/staticfiles
+      - /var/www/blanket_site/media:/code/mediafiles
     ports:
       - "8000:8000"
     secrets:
