@@ -35,7 +35,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 IS_HEROKU_APP = os.getenv("USE_HEROKU") == "TRUE"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if not IS_HEROKU_APP:
+if not IS_HEROKU_APP and not RUNNING_IN_CONTAINER:
     DEBUG = True
 
 # On Heroku, it's safe to use a wildcard for `ALLOWED_HOSTS``, since the Heroku router performs
