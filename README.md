@@ -5,7 +5,7 @@ A community blanket project for EMF 2024
 
 ### Django & Postgres database
 
-Copy the `secret_variables_django.env.template` file to `secret_variables_django.env` and configure the environment variables (see [Media files](media-files) for S3 config).
+Copy the `secret_variables_django.env.template` file to `secret_variables_django.env` and configure the environment variables (see [Media files](media-files) for S3 config). Add your domain to `ALLOWED_HOSTS`.
 
 Create a username and password for the Postgres database and add them to files `secret_postgres_user.txt` and `secret_postgres_password.txt`
 
