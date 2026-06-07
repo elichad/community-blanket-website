@@ -1,6 +1,25 @@
 # community-blanket
 A community blanket project for EMF 2024
 
+
+## Run locally (development)
+
+Copy the `secret_variables_django.env.template` file to `secret_variables_django.env` and configure the environment variables (see [Media files](media-files) for S3 config, if running in development you probably want to disable S3).
+
+### Set up pipenv
+
+I don't remember how to do this...
+
+`pipenv shell` once installed.
+
+```
+set -a
+source secret_variables_django.env
+set +a
+cd blanket-site
+python manage.py runserver
+```
+
 ## Deploying
 
 ### Django & Postgres database
