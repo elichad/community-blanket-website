@@ -2,18 +2,38 @@
 
 from django.db import migrations, models
 import os
-import io
+from io import BytesIO
 from PIL import Image
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.files.base import ContentFile
 
 
 def create_thumbnails(apps, schema_editor):
     Square = apps.get_model("squares", "Square")
     for square in Square.objects.all():
-        path = square.image.path
+        # generate thumbnail automatically
+        # 1. create thumbnail of image
+        imag = Image.open(square.image)
         output_size = (100, 100)
-        imag = Image.open(path)
         imag.thumbnail(output_size)
-        imag.save(path + ".thumbnail")
+        # 2. create file buffer
+        buffer = BytesIO()
+        imag.save(fp=buffer, format="PNG")
+        pillow_image = ContentFile(buffer.getvalue())
+        # 3. save to thumbnail field
+        imag_name = f'{square.image.name.replace("/","_")}-thumbnail.png'
+        square.thumbnail.save(
+            imag_name,
+            InMemoryUploadedFile(
+                pillow_image,  # file
+                None,  # field_name
+                imag_name,  # file name
+                "image/png",  # content_type
+                pillow_image.tell,  # size
+                None,  # content_type_extra
+            ),
+            save=True,
+        )
 
 
 class Migration(migrations.Migration):
@@ -32,5 +52,5 @@ class Migration(migrations.Migration):
                 upload_to="thumbnails/squares/",
             ),
         ),
-        # migrations.RunPython(create_thumbnails, migrations.RunPython.noop),
+        migrations.RunPython(create_thumbnails, migrations.RunPython.noop),
     ]

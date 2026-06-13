@@ -62,7 +62,7 @@ class Square(models.Model):
         imag.save(fp=buffer, format="PNG")
         pillow_image = ContentFile(buffer.getvalue())
         # 3. save to thumbnail field
-        imag_name = f"{self.image.name}-thumbnail.png"
+        imag_name = f'{self.image.name.replace("/","_")}-thumbnail.png'
         self.thumbnail.save(
             imag_name,
             InMemoryUploadedFile(

@@ -23,7 +23,7 @@ Click on any square for more details.
         {% for item in row %}
         <td>
             {% if item %}
-            <a href="{{ item.get_absolute_url }}"><img src="{{ item.image.url }}" alt="{{ item.description }}"
+            <a href="{{ item.get_absolute_url }}"><img src="{{ item.thumbnail.url }}" alt="{{ item.description }}"
                     width="75px" height="75px"></a>
             {% else %}
             Empty
