@@ -181,7 +181,7 @@ if USE_S3:
                 "access_key": os.getenv("AWS_ACCESS_KEY_ID"),
                 "secret_key": os.getenv("AWS_SECRET_ACCESS_KEY"),
                 "bucket_name": os.getenv("AWS_STORAGE_BUCKET_NAME"),
-                "default_acl": None,
+                "default_acl": "public-read",
                 "endpoint_url": os.getenv("AWS_URL"),
                 "region_name": os.getenv("AWS_DEFAULT_REGION"),
                 "custom_domain": os.getenv("AWS_S3_BUCKET_CUSTOM_DOMAIN"),
