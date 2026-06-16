@@ -13,14 +13,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 RUNNING_IN_CONTAINER = os.environ.get("RUNNING_IN_CONTAINER")
 if RUNNING_IN_CONTAINER:
     from dotenv import load_dotenv
+
     load_dotenv("/run/secrets/django_variables")
 
 
@@ -174,7 +173,26 @@ if USE_S3:
     # PUBLIC_MEDIA_LOCATION = "media"
     # MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
-    DEFAULT_FILE_STORAGE = "blanket_site.storage_backends.PublicMediaStorage"
+    # DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {
+                "access_key": os.getenv("AWS_ACCESS_KEY_ID"),
+                "secret_key": os.getenv("AWS_SECRET_ACCESS_KEY"),
+                "bucket_name": os.getenv("AWS_STORAGE_BUCKET_NAME"),
+                "default_acl": None,
+                "endpoint_url": os.getenv("AWS_URL"),
+                "region_name": os.getenv("AWS_DEFAULT_REGION"),
+                "custom_domain": os.getenv("AWS_S3_BUCKET_CUSTOM_DOMAIN"),
+                "object_parameters": {"CacheControl": "max-age=86400"},
+                "signature_version": "s3v4",
+            },
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"
+        },
+    }
 else:
     # STATIC_URL = "static/"
     # STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
