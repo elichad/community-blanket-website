@@ -11,7 +11,7 @@ from squares.forms import SquareForm
 def all_squares(request):
     """View function for home page of site."""
 
-    squares = Square.objects.all()
+    squares = Square.objects.all().order_by("pk")
 
     context = {"all_squares": squares}
 
