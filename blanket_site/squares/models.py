@@ -1,16 +1,12 @@
-import os
-from io import BytesIO
 from typing import Collection
 from django.db import models
 from django.urls import reverse
-from django.core.files.uploadedfile import InMemoryUploadedFile
-from django.core.files.base import ContentFile
-from PIL import Image
 
 from contributors.models import Person, get_anonymous_user
+from thumbnails.models import ThumbnailGenerator
 
 
-class Square(models.Model):
+class Square(ThumbnailGenerator):
     """Model for tracking individual contributions."""
 
     name = models.CharField(max_length=256, help_text="A name for the square.")
@@ -41,8 +37,6 @@ class Square(models.Model):
         help_text="Anything you'd like others to know about the square - for example, why you chose the design, or what the colours mean.",
     )
 
-    # TODO: fields relating to location in a larger blanket
-
     def get_absolute_url(self):
         return reverse("squares:square-detail", kwargs={"pk": self.pk})
 
@@ -52,31 +46,6 @@ class Square(models.Model):
         return super().clean_fields(exclude)
 
     def save(self, *args, **kwargs):
-        # generate thumbnail automatically
-        # 1. create thumbnail of image
-        imag = Image.open(self.image)
-        output_size = (100, 100)
-        imag.thumbnail(output_size)
-        # 2. create file buffer
-        buffer = BytesIO()
-        imag.save(fp=buffer, format="PNG")
-        pillow_image = ContentFile(buffer.getvalue())
-        # 3. save to thumbnail field
-        imag_name = f'{self.image.name.replace("/","_")}-thumbnail.png'
-        self.thumbnail.save(
-            imag_name,
-            InMemoryUploadedFile(
-                pillow_image,  # file
-                None,  # field_name
-                imag_name,  # file name
-                "image/png",  # content_type
-                pillow_image.tell,  # size
-                None,  # content_type_extra
-            ),
-            save=False,
-        )
-
-        # now save the whole instance
         super().save(*args, **kwargs)
 
     def __str__(self):
