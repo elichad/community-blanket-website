@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ThumbnailsConfig(AppConfig):
+class CommonConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "thumbnails"
+    name = "common"
