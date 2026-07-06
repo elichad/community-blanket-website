@@ -32,7 +32,17 @@ class PlanetCreate(CreateView):
 
 class PlanetUpdate(UpdateView):
     model = Planet
-    fields = ["name", "image", "creator", "date_created", "description", "notes"]
+    fields = [
+        "name",
+        "image",
+        "creator",
+        "date_created",
+        "mass",
+        "diameter",
+        "fun_fact",
+        "description",
+        "notes",
+    ]
 
     # form_class = PlanetForm
 

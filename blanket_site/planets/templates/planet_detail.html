@@ -17,11 +17,11 @@ Planet #{{ object.id }}: {{ object.name }} discovered by {{ object.creator }}
         <td>#{{ object.id }}</td>
     </tr>
     <tr>
-        <th scope="row">Creator:</th>
+        <th scope="row">Discovered by:</th>
         <td>{{ object.creator }}</td>
     </tr>
     <tr>
-        <th scope="row">Date created:</th>
+        <th scope="row">Date discovered:</th>
         <td>{{ object.date_created }}</td>
     </tr>
     <tr>
@@ -29,7 +29,19 @@ Planet #{{ object.id }}: {{ object.name }} discovered by {{ object.creator }}
         <td>{{ object.date_time_uploaded }}</td>
     </tr>
     <tr>
-        <th scope="row">Description:</th>
+        <th scope="row">Mass:</th>
+        <td>{{ object.mass }} grams</td>
+    </tr>
+    <tr>
+        <th scope="row">Diameter:</th>
+        <td>{{ object.diameter }} centimetres</td>
+    </tr>
+    <tr>
+        <th scope="row">Fun fact:</th>
+        <td>{{ object.fun_fact }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Visual description:</th>
         <td>{{ object.description }}</td>
     </tr>
     <tr>
