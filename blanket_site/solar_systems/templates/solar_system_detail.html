@@ -29,29 +29,27 @@ Solar System #{{ object.id }}: {{ object.name }} by {{ object.creator }}
         <td>{{ object.description }}</td>
     </tr>
     <tr>
-        <th scope="row">Rows:</th>
-        <td>{{ object.num_rows }}</td>
-    </tr>
-    <tr>
-        <th scope="row">Columns:</th>
-        <td>{{ object.num_cols }}</td>
+        <th scope="row">Max distance:</th>
+        <td>{{ object.max_distance }} cm</td>
     </tr>
 </table>
 
+<!-- to be updated entirely -->
 <table>
     {% with items=object.get_solar_system_items %}
-    {% for row in items %}
+    {% for item in items %}
     <tr>
-        {% for item in row %}
         <td>
-            {% if item %}
-            <a href="{{ item.get_absolute_url }}"><img src="{{ item.thumbnail.url }}" alt="{{ item.description }}"
+            {% if item and item.planet %}
+            {% with planet=item.planet %}
+            <a href="{{ planet.get_absolute_url }}"><img src="{{ planet.thumbnail.url }}" alt="{{ planet.description }}"
                     width="75px" height="75px"></a>
+            {% endwith %}
+
             {% else %}
             Empty
             {% endif %}
         </td>
-        {% endfor %}
     </tr>
     {% endfor %}
     {% endwith %}

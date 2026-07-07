@@ -27,6 +27,7 @@ urlpatterns = (
         path("squares/", include("squares.urls")),
         path("blankets/", include("blankets.urls")),
         path("planets/", include("planets.urls")),
+        path("solar_systems/", include("solar_systems.urls")),
     ]
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

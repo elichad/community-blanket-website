@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "contributors.apps.ContributorsConfig",
     "common.apps.CommonConfig",
     "squares.apps.SquaresConfig",
+    "solar_systems.apps.SolarSystemsConfig",
     "planets.apps.PlanetsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
