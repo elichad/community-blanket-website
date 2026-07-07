@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}
+Solar System #{{ object.id }}: {{ object.name }} by {{ object.creator }}
+{% endblock %}
+
+{% block content %}
+<h1>Solar System #{{ object.id }}: <em>{{ object.name }}</em> by {{ object.creator }}</h1>
+
+<table>
+    <tr>
+        <th scope="row">ID:</th>
+        <td>#{{ object.id }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Creator:</th>
+        <td>{{ object.creator }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Date created:</th>
+        <td>{{ object.created_at }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Last updated:</th>
+        <td>{{ object.updated_at }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Description:</th>
+        <td>{{ object.description }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Rows:</th>
+        <td>{{ object.num_rows }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Columns:</th>
+        <td>{{ object.num_cols }}</td>
+    </tr>
+</table>
+
+<table>
+    {% with items=object.get_solar_system_items %}
+    {% for row in items %}
+    <tr>
+        {% for item in row %}
+        <td>
+            {% if item %}
+            <a href="{{ item.get_absolute_url }}"><img src="{{ item.thumbnail.url }}" alt="{{ item.description }}"
+                    width="75px" height="75px"></a>
+            {% else %}
+            Empty
+            {% endif %}
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    {% endwith %}
+</table>
+
+{% endblock %}

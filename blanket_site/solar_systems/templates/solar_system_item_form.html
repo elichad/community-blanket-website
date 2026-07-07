@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Item To Solar System
+{% endblock %}
+
+{% block content %}
+<h1>Add Item to Solar System</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" id="submit">
+</form>
+{% endblock %}

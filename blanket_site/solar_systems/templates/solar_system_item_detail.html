@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+Solar System item #{{ object.id }}: {{ object.planet }} in {{ object.solar_system }}
+{% endblock %}
+
+{% block content %}
+<h1>Solar System item #{{ object.id }}: <em>{{ object.planet }}</em> in {{ object.solar_system }}</h1>
+
+<table>
+    <tr>
+        <th scope="row">ID:</th>
+        <td>#{{ object.id }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Planet:</th>
+        <td>{{ object.planet }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Solar System:</th>
+        <td>{{ object.solar_system }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Last updated:</th>
+        <td>{{ object.updated_at }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Row:</th>
+        <td>{{ object.row }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Column</th>
+        <td>{{ object.column }}</td>
+    </tr>
+</table>
+{% endblock %}
