@@ -8,5 +8,5 @@ WORKDIR /code
 # install dependencies
 COPY . /code/
 
-RUN apt-get update && apt install -y libpython3-dev build-essential
+RUN apt-get update && apt install -y libpython3-dev build-essential libpq-dev
 RUN pip install -r requirements.txt
