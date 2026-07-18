@@ -12,12 +12,18 @@ All Planets
 <table>
     <th>ID</th>
     <th>Image</th>
-    <th>Creator</th>
+    <th>Discovered by</th>
+    <th>Mass</th>
+    <th>Diameter</th>
+    <th>Fun fact</th>
     {% for planet in all_planets %}
     <tr>
         <td><a href="{{ planet.get_absolute_url }}">#{{ planet.id }}</a></td>
         <td><img src="{{ planet.thumbnail.url }}" alt="{{ planet.description }}" width="75px" height="75px"></td>
         <td>{{ planet.creator }}</td>
+        <td>{{ planet.mass }} g</td>
+        <td>{{ planet.diameter }} cm</td>
+        <td>{{ planet.fun_fact }}</td>
     </tr>
     {% endfor %}
 </table>

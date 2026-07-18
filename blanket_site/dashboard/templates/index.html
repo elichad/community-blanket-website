@@ -17,25 +17,27 @@ Click on any planet for more details. Proper visualisation coming soon!
 
 {% if object %}
 <!-- to be updated entirely -->
+{% with items=object.get_solar_system_items %}
 <table>
-    {% with items=object.get_solar_system_items %}
+    <th>Image</th>
+    <th>Discovered by</th>
+    <th>Mass</th>
+    <th>Diameter</th>
+    <th>Fun fact</th>
     {% for item in items %}
+    {% with planet=item.planet %}
     <tr>
-        <td>
-            {% if item and item.planet %}
-            {% with planet=item.planet %}
-            <a href="{{ planet.get_absolute_url }}"><img src="{{ planet.thumbnail.url }}" alt="{{ planet.description }}"
-                    width="75px" height="75px"></a>
-            {% endwith %}
-
-            {% else %}
-            Empty
-            {% endif %}
-        </td>
+        <td><a href="{{ planet.get_absolute_url }}"><img src="{{ planet.thumbnail.url }}" alt="{{ planet.description }}"
+                    width="75px" height="75px"></a></td>
+        <td>{{ planet.creator }}</td>
+        <td>{{ planet.mass }} g</td>
+        <td>{{ planet.diameter }} cm</td>
+        <td>{{ planet.fun_fact }}</td>
     </tr>
-    {% endfor %}
     {% endwith %}
+    {% endfor %}
 </table>
+{% endwith %}
 {% endif %}
 
 {% endblock %}
