@@ -7,6 +7,11 @@ Planet #{{ object.id }}: {{ object.name }} discovered by {{ object.creator }}
 {% block content %}
 <h1>Planet #{{ object.id }}: <em>{{ object.name }}</em> discovered by {{ object.creator }}</h1>
 
+<p>If you made this planet, please hang it in the <a
+        href="https://map.emfcamp.org/#18/52.041036/-2.377982/m=52.041029,-2.377975">Arts tent</a> or drop it off at <a
+        href="https://map.emfcamp.org/#18.5/52.04028161496325/-2.378171671045834/m=52.04028161496325,-2.378171671045834">Tekhnē-cal
+        Village</a> and we'll hang it for you.</p>
+
 <div id="image-container">
     <img src="{{ object.image.url }}" alt="{{ object.description }}">
 </div>

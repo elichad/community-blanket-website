@@ -46,13 +46,13 @@ class Planet(ThumbnailGenerator):
         default=0,
         decimal_places=2,
         max_digits=10,
-        help_text='The mass of your planet in <b>grams</b>. There are weighing scales in <a href="https://map.emfcamp.org/\#18.5/52.04028161496325/-2.378171671045834/m=52.04028161496325,-2.378171671045834">Tekhnē-cal Village</a>. If you don\'t have weighing scales to hand, make a guess or enter 0.',
+        help_text='The mass of your planet in <b>grams</b>. There are weighing scales in <a href="https://map.emfcamp.org/#18.5/52.04028161496325/-2.378171671045834/m=52.04028161496325,-2.378171671045834">Tekhnē-cal Village</a>. If you don\'t have weighing scales to hand, make a guess or enter 0.',
     )
     diameter = models.DecimalField(
         default=0,
         decimal_places=2,
         max_digits=10,
-        help_text='The diameter of your planet in <b>centimetres</b>. There are measuring tools in <a href="https://map.emfcamp.org/\#18.5/52.04028161496325/-2.378171671045834/m=52.04028161496325,-2.378171671045834">Tekhnē-cal Village</a>. If you don\'t have measuring tools to hand, make a guess or enter 0.',
+        help_text='The diameter of your planet in <b>centimetres</b>. There are measuring tools in <a href="https://map.emfcamp.org/#18.5/52.04028161496325/-2.378171671045834/m=52.04028161496325,-2.378171671045834">Tekhnē-cal Village</a>. If you don\'t have measuring tools to hand, make a guess or enter 0.',
     )
     fun_fact = models.TextField(
         blank=True,

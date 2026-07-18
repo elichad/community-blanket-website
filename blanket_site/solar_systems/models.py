@@ -56,9 +56,9 @@ class SolarSystemItem(models.Model):
             # Planet can only be in one system
             models.UniqueConstraint("planet", name="unique_planet"),
             # Planets may not share a position
-            models.UniqueConstraint(
-                "solar_system", "distance", "angle", name="unique_solar_system_coords"
-            ),
+            # models.UniqueConstraint(
+            #     "solar_system", "distance", "angle", name="unique_solar_system_coords"
+            # ),
             models.CheckConstraint(
                 check=models.Q(distance__gte=0),
                 name="distance_not_negative",
