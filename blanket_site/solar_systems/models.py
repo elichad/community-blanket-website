@@ -3,8 +3,6 @@ import numpy as np
 from django.db import models
 from django.urls import reverse
 
-from planets.models import Planet
-
 # Create your models here.
 
 
@@ -41,7 +39,7 @@ class SolarSystemItem(models.Model):
     """Model to connect Planets and SolarSystems."""
 
     solar_system = models.ForeignKey(SolarSystem, on_delete=models.CASCADE)
-    planet = models.ForeignKey(Planet, on_delete=models.PROTECT)
+    planet = models.ForeignKey("planets.Planet", on_delete=models.PROTECT)
     # distance from centre of system (r)
     distance = models.DecimalField(
         decimal_places=2,

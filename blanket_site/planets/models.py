@@ -4,6 +4,7 @@ from django.urls import reverse
 
 from contributors.models import Person, get_anonymous_user
 from common.models import ThumbnailGenerator
+from solar_systems.models import SolarSystem, SolarSystemItem
 
 
 class Planet(ThumbnailGenerator):
@@ -82,6 +83,20 @@ class Planet(ThumbnailGenerator):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
+
+        print("adding planet to solar system...")
+
+        try:
+            emf_solar_system = SolarSystem.objects.get(
+                name="EMF Community Solar System"
+            )
+            SolarSystemItem.objects.get_or_create(
+                solar_system=emf_solar_system,
+                planet=self,
+                defaults={"distance": 0, "angle": 0},
+            )
+        except SolarSystem.DoesNotExist:
+            pass
 
     def __str__(self):
         return f"#{self.id} {self.name} discovered by {self.creator}"
